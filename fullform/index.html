@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Форма реєстрації</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f8ff;
+        margin: 0;
+        padding: 0;
+      }
+      main {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      form {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #ccc;
+      }
+      section {
+        margin-bottom: 20px;
+      }
+      h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="number"],
+      input[type="url"],
+      input[type="tel"],
+      input[type="date"],
+      input[type="color"],
+      textarea,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      input[type="radio"],
+      input[type="checkbox"] {
+        margin-right: 10px;
+      }
+      .form-actions {
+        display: flex;
+        justify-content: space-between;
+      }
+      input[type="submit"],
+      input[type="reset"],
+      input[type="button"] {
+        padding: 10px 20px;
+        border: none;
+        background-color: #4caf50;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      input[type="reset"] {
+        background-color: #f44336;
+      }
+      input[type="button"] {
+        background-color: #008cba;
+      }
+
+      fieldset {
+        border: none;
+        margin-bottom: 10px;
+      }
+
+      .radio-group,
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+      }
+
+      .radio-group,
+      .checkbox-group label {
+        margin-right: 20px;
+        cursor: pointer;
+      }
+
+      .radio-group,
+      .checkbox-group input[type="radio"] {
+        margin-right: 5px;
+      }
+
+      legend {
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      function changeValue() {
+        const inputElement = document.getElementById("dob");
+        const displayElement = document.getElementById("age");
+        if (!inputElement.value) {
+          displayElement.value = "";
+          return;
+        }
+
+        const age =
+          new Date().getFullYear() - new Date(inputElement.value).getFullYear();
+
+        if (!age || (age < 16 && age >= 100)) {
+          displayElement.value = null;
+          inputElement.value = null;
+          alert("Error: Age must be between 16 and 100 years.");
+          return;
+        }
+
+        displayElement.value = age;
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <h1>Форма реєстрації</h1>
+
+      <form>
+        <section>
+          <h2>Особисті дані</h2>
+
+          <label for="fullname">Повне ім'я</label>
+          <input type="text" id="fullname" name="fullname" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="password">Пароль</label>
+          <input type="password" id="password" name="password" required />
+
+          <label for="dob">Дата народження</label>
+          <input type="date" id="dob" name="dob" oninput="changeValue()" />
+
+          <fieldset>
+            <legend><label for="male">Стать</label></legend>
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="male"
+                required
+              />
+              <label for="male">чоловіча</label>
+
+              <input type="radio" id="female" name="gender" value="female" />
+              <label for="female">жіноча</label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section>
+          <h2>Контактна інформація</h2>
+
+          <label for="phone">Телефон</label>
+          <input type="tel" id="phone" name="phone" />
+
+          <label for="website">Персональний сайт</label>
+          <input type="url" id="website" name="website" />
+
+          <label for="address">Адреса</label>
+          <textarea id="address" name="address" rows="4"></textarea>
+        </section>
+
+        <section>
+          <h2>Параметри</h2>
+
+          <label for="age">Вік</label>
+          <input type="number" id="age" name="age" min="1" max="100" />
+
+          <label for="color">Улюблений колір</label>
+          <input type="color" id="color" name="color" />
+
+          <label for="course">Оберіть курс</label>
+          <select id="course" name="course">
+            <option value="">-=Виберіть курс=-</option>
+            <option value="frontend">Front-End</option>
+            <option value="backend">Back-End</option>
+            <option value="project_management">Project Management</option>
+            <option value="qa_manual">QA Manual</option>
+          </select>
+          <fieldset>
+            <legend>
+              <label for="male">Мови програмування, які знаєте:</label>
+            </legend>
+            <div class="checkbox-group">
+              <input type="checkbox" id="html" name="language" value="HTML" />
+              <label for="html">HTML</label>
+              <input type="checkbox" id="css" name="language" value="CSS" />
+              <label for="css">CSS</label>
+              <input
+                type="checkbox"
+                id="js"
+                name="language"
+                value="JavaScript"
+              />
+              <label for="js">JavaScript</label>
+              <input
+                type="checkbox"
+                id="python"
+                name="language"
+                value="Python"
+              />
+              <label for="python">Python</label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section>
+          <h2>Згода</h2>
+          <label>
+            <input type="checkbox" name="agreement" required />
+            Я погоджуюсь з обробкою персональних даних
+          </label>
+        </section>
+
+        <div class="form-actions">
+          <input type="submit" value="Відправити" />
+          <input type="reset" value="Очистити форму" />
+        </div>
+      </form>
+    </main>
+  </body>
+</html>

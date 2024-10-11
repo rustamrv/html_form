@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Форма реєстрації</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #e6ffe6;
+      }
+      form {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      textarea,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      input[type="radio"] {
+        margin-right: 10px;
+      }
+      input[type="checkbox"] {
+        margin-right: 10px;
+      }
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+      input[type="submit"],
+      input[type="reset"] {
+        padding: 10px 20px;
+        border: none;
+        background-color: #4caf50;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      input[type="reset"] {
+        background-color: #f44336;
+      }
+      .button-link {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      .button-link:hover {
+        background-color: #45a049;
+      }
+      fieldset {
+        border: none;
+        margin-bottom: 10px;
+      }
+
+      .radio-group {
+        display: flex;
+        align-items: center;
+      }
+
+      .radio-group label {
+        margin-right: 20px;
+        cursor: pointer;
+      }
+
+      .radio-group input[type="radio"] {
+        margin-right: 5px;
+      }
+
+      legend {
+        cursor: pointer;
+      }
+      #error_message {
+        color: red;
+      }
+    </style>
+    <script>
+      function validateForm() {
+        const password = document.getElementById("password");
+        const confirmPassword = document.getElementById("confirm_password");
+        const errorMessage = document.getElementById("error_message");
+
+        confirmPassword.addEventListener("input", () => {
+          if (password.value !== confirmPassword.value) {
+            errorMessage.textContent = "Паролі не співпадають";
+            errorMessage.style.display = "block";
+          } else {
+            errorMessage.textContent = "";
+            errorMessage.style.display = "none";
+          }
+        });
+
+        if (password.value !== confirmPassword.value) {
+          errorMessage.textContent = "Паролі не співпадають";
+          errorMessage.style.display = "block";
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </head>
+  <body>
+    <form onsubmit="return validateForm()">
+      <label for="fullname">Повне ім'я</label>
+      <input type="text" id="fullname" name="fullname" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">Пароль</label>
+      <input type="password" id="password" name="password" required />
+
+      <label for="confirm_password">Пароль ще раз</label>
+      <input
+        type="password"
+        id="confirm_password"
+        name="confirm_password"
+        required
+      />
+      <span id="error_message" class="error"></span><br />
+
+      <fieldset>
+        <legend><label for="male">Стать</label></legend>
+        <div class="radio-group">
+          <input type="radio" id="male" name="gender" value="male" required />
+          <label for="male">чоловіча</label>
+
+          <input type="radio" id="female" name="gender" value="female" />
+          <label for="female">жіноча</label>
+        </div>
+      </fieldset>
+
+      <label for="age">Вік</label>
+      <input type="number" id="age" name="age" min="16" max="100" />
+
+      <label for="course">Курс</label>
+      <select id="course" name="course" required>
+        <option value="">-=Виберіть курс=-</option>
+        <option value="frontend">Front-End</option>
+        <option value="backend">Back-End</option>
+        <option value="project_management">Project Management</option>
+        <option value="qa_manual">QA Manual</option>
+      </select>
+
+      <label for="address">Повна адреса</label>
+      <textarea
+        id="address"
+        name="address"
+        rows="4"
+        placeholder="Країна, регіон, місто/селище, вулиця"
+      ></textarea>
+
+      <label>
+        <input type="checkbox" name="agreement" required />
+        Я погоджуюсь з обробкою персональних даних
+      </label>
+
+      <div class="buttons">
+        <input type="reset" value="Очистити форму" />
+        <input type="submit" value="Зареєструватися" />
+      </div>
+      <div>
+        <p>
+          <a href="../fullform/index.html" target="_blank" class="button-link"
+            >Відкрити повну форму</a
+          >
+        </p>
+      </div>
+    </form>
+  </body>
+</html>
