@@ -64,9 +64,8 @@
         display: flex;
         justify-content: space-between;
       }
-      input[type="submit"],
-      input[type="reset"],
-      input[type="button"] {
+      button[type="submit"],
+      button[type="reset"] {
         padding: 10px 20px;
         border: none;
         background-color: #4caf50;
@@ -74,10 +73,10 @@
         border-radius: 5px;
         cursor: pointer;
       }
-      input[type="reset"] {
+      button[type="reset"] {
         background-color: #f44336;
       }
-      input[type="button"] {
+      button[type="button"] {
         background-color: #008cba;
       }
 
@@ -134,7 +133,11 @@
     <main>
       <h1>Форма реєстрації</h1>
 
-      <form>
+      <form
+        method="post"
+        id="my_form"
+        onsubmit="alert(decodeURI(new URLSearchParams(Array.from(new FormData(document.getElementById('my_form')))).toString()));return false;"
+      >
         <section>
           <h2>Особисті дані</h2>
 
@@ -234,8 +237,8 @@
         </section>
 
         <div class="form-actions">
-          <input type="submit" value="Відправити" />
-          <input type="reset" value="Очистити форму" />
+          <button type="reset">Очистити форму</button>
+          <button type="submit">Зареєструватися</button>
         </div>
       </form>
     </main>

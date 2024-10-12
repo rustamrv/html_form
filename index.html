@@ -42,8 +42,8 @@
         display: flex;
         justify-content: space-between;
       }
-      input[type="submit"],
-      input[type="reset"] {
+      button[type="submit"],
+      button[type="reset"] {
         padding: 10px 20px;
         border: none;
         background-color: #4caf50;
@@ -51,7 +51,7 @@
         border-radius: 5px;
         cursor: pointer;
       }
-      input[type="reset"] {
+      button[type="reset"] {
         background-color: #f44336;
       }
       .button-link {
@@ -114,12 +114,16 @@
           errorMessage.style.display = "block";
           return false;
         }
+
         return true;
       }
     </script>
   </head>
   <body>
-    <form onsubmit="return validateForm()">
+    <form
+      onsubmit="return validateForm()"
+      method="POST" 
+    >
       <label for="fullname">Повне ім'я</label>
       <input type="text" id="fullname" name="fullname" required />
 
@@ -176,8 +180,8 @@
       </label>
 
       <div class="buttons">
-        <input type="reset" value="Очистити форму" />
-        <input type="submit" value="Зареєструватися" />
+        <button type="reset">Очистити форму</button>
+        <button type="submit">Зареєструватися</button>
       </div>
       <div>
         <p>
